@@ -4,8 +4,8 @@ local RunService = game:GetService("RunService")
 
 local Modules = ReplicatedStorage.Modules
 
-local Configuration = require(Modules.Configuration)
 local Effects = require(Modules.Effects)
+local Config = require(Modules.Config)
 
 local RemoteEvents = ReplicatedStorage.RemoteEvents
 local Attack = RemoteEvents.Attack
