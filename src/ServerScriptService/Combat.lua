@@ -6,8 +6,8 @@ local Modules = ReplicatedStorage.Modules
 local RemoteEvents = ReplicatedStorage.RemoteEvents
 local Attack = RemoteEvents.Attack
 
-local Configuration = require(Modules.Configuration)
 local Effects = require(Modules.Effects)
+local Config = require(Modules.Config)
 
 local Bezier = require("@self/Bezier")
 
@@ -44,7 +44,7 @@ local function OnAttackServerEvent(player: Player, baseEndPosition: Vector3)
 		local endPosition, projectileCreationDelay = baseEndPosition, 0
 		if index > 1 then
 			endPosition = Bezier.GetOffsetEndPosition(baseEndPosition)
-			projectileCreationDelay = (index - 1) * Configuration.PROJECTILE_CREATION_DELAY
+			projectileCreationDelay = (index - 1) * Config.PROJECTILE_CREATION_DELAY
 		end
 		
 		local distance = (endPosition - startCFrame.Position).Magnitude
@@ -56,7 +56,7 @@ local function OnAttackServerEvent(player: Player, baseEndPosition: Vector3)
 		table.insert(paths, path)
 		table.insert(distances, distance)
 		
-		local timeToExplode = distance / Configuration.PROJECTILE_VELOCITY
+		local timeToExplode = distance / Config.PROJECTILE_VELOCITY
 		task.delay(timeToExplode + projectileCreationDelay, function()
 			local parts = workspace:GetPartBoundsInRadius(endPosition, BLAST_RAIDUS)
 			local exclude = {}
